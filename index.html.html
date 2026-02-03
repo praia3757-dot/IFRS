@@ -1,0 +1,177 @@
+<!-- #region html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+<!-- #endregion html-->
+<!-- #region style-->
+    <style>
+        #image{
+            width: 150px;
+            height: auto;
+            margin: 15px;
+        }
+
+
+        body{
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #fff;
+            height: 100vh;
+            
+
+        }
+
+        h1{
+            color:mediumseagreen;
+        
+        }
+
+       
+
+        #e-mail{
+            width: 200px;
+            padding: 15px;
+            margin-top: 7.2px;
+            border-radius: 5px;
+            border-color: none;
+        }
+
+        #senha{
+            margin-top: 15px;
+            border-radius: 5px;
+            border-color: none;
+            width: 150px;
+            padding: 15px;
+        }
+
+        #login{
+            margin-top: 10px;
+            border-radius: 5px;
+            border-color: none;
+            background-color: mediumseagreen;
+            color: #fff;
+            width: 60px;
+            padding: 10px;
+            cursor: pointer;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+
+        }
+
+
+    </style>
+</head>
+    <!-- #endregion style-->
+<body>
+
+<!-- #region iamgem-->
+<img id="image"  src="ifrs.png" alt="logo do if" class="logo">
+<!-- #endregion imagem-->
+
+<!-- #region titles-->
+    <h1>
+        Bem vindo
+    </h1>
+
+    <p id="aviso_senha">
+        a senha deve conter 8 caracteres ;)
+    </p>
+
+    
+    <!-- #endregion titles-->
+
+<!-- #region inputs-->
+     <input
+     type="text"
+     placeholder="digite seu melhor e-mail"
+     id="e-mail"
+     />
+
+     <input
+     type="password"
+     placeholder="digite sua senha"
+     id="senha"
+     />
+     <!-- #endregion inputs-->
+
+<!-- #region buttons-->
+     <button id="login" onpointerenter="cor()" onpointerleave="back()">LOGIN</button>
+
+    <!-- #endregion buttons-->
+
+<!-- #region script-->
+<script>
+    const botao = document.getElementById("login");
+    const inputEmail = document.getElementById("e-mail");
+    const inputSenha = document.getElementById("senha");
+    const aviso_senha = document.getElementById("aviso_senha");
+
+    function cor(){
+        document.getElementById("login").style.backgroundColor ="green"
+        document.getElementById("login").style.color = "red"
+    }
+    function back(){
+        document.getElementById("login").style.backgroundColor ="mediumseagreen"
+        document.getElementById("login").style.color = "#fff"
+    }
+
+    // Monitoramento em tempo real (fora do clique do botão)
+    inputSenha.addEventListener("input", () => {
+        if (inputSenha.value.length >= 8) {
+            aviso_senha.style.display = "none";
+        } else {
+            aviso_senha.style.display = "block";
+        }
+    });
+
+    botao.addEventListener("click", () => {
+        const emailValor = inputEmail.value;
+        const senhaValor = inputSenha.value;
+
+        // Resetar bordas para começar a verificação do zero
+        inputEmail.style.borderColor = "";
+        inputSenha.style.borderColor = "";
+
+        if (emailValor === "" && senhaValor === "") {
+            alert("adicione algo aos campos");
+            inputEmail.style.borderColor = "red";
+            inputSenha.style.borderColor = "red";
+        } 
+        else if (emailValor === "") {
+            alert("você não preencheu o e-mail");
+            inputEmail.style.borderColor = "red";
+        } 
+        else if (senhaValor === "") {
+            alert("adicione algo a senha");
+            inputSenha.style.borderColor = "red";
+        } 
+        else if (senhaValor.length < 8) {
+            alert("a senha precisa ter 8 caracteres");
+            inputSenha.style.borderColor = "red";
+            inputSenha.value = ""; // Limpa a senha se estiver errada
+        } 
+        else {
+            alert("login realizado com sucesso! bem vindo ao instituto federal :D");
+            inputEmail.value = "";
+            inputSenha.value = "";
+        }
+    });
+
+</script>
+<!-- #endregion script-->
+
+</body>
+</html>     
+    
+    
+
+
+
+    
