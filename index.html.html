@@ -61,8 +61,14 @@
             padding: 10px;
             cursor: pointer;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            transition: 0.3s;
             
 
+        }
+
+        #login:hover{
+            background-color: #32a041;
+            color: red;
         }
 
 
@@ -71,7 +77,7 @@
     <!-- #endregion style-->
 <body>
 
-<!-- #region iamgem-->
+<!-- #region imagem-->
 <img id="image"  src="ifrs.png" alt="logo do if" class="logo">
 <!-- #endregion imagem-->
 
@@ -79,9 +85,13 @@
     <h1>
         Bem vindo
     </h1>
+    
+    <h2 id="aviso_login">
+        o login é 11111111111
+    </h2>
 
     <p id="aviso_senha">
-        a senha deve conter 8 caracteres ;)
+        a senha é ifrs1234 ;)
     </p>
 
     
@@ -102,7 +112,7 @@
      <!-- #endregion inputs-->
 
 <!-- #region buttons-->
-     <button id="login" onpointerenter="cor()" onpointerleave="back()">LOGIN</button>
+     <button id="login">LOGIN</button>
 
     <!-- #endregion buttons-->
 
@@ -112,15 +122,11 @@
     const inputEmail = document.getElementById("e-mail");
     const inputSenha = document.getElementById("senha");
     const aviso_senha = document.getElementById("aviso_senha");
+    const aviso_login = document.getElementById("aviso_login");
+    const senhaCerta = "ifrs1234";
+    const loginCerto = "11111111111";
 
-    function cor(){
-        document.getElementById("login").style.backgroundColor ="green"
-        document.getElementById("login").style.color = "red"
-    }
-    function back(){
-        document.getElementById("login").style.backgroundColor ="mediumseagreen"
-        document.getElementById("login").style.color = "#fff"
-    }
+
 
     // Monitoramento em tempo real (fora do clique do botão)
     inputSenha.addEventListener("input", () => {
@@ -130,6 +136,14 @@
             aviso_senha.style.display = "block";
         }
     });
+
+    inputEmail.addEventListener("input", () => {
+        if (inputEmail.value.length >= 11){
+            aviso_login.style.display = "none";
+        }else{
+            aviso_login.style.display = "block";
+        }
+    })
 
     botao.addEventListener("click", () => {
         const emailValor = inputEmail.value;
@@ -153,17 +167,29 @@
             inputSenha.style.borderColor = "red";
         } 
         else if (senhaValor.length < 8) {
-            alert("a senha precisa ter 8 caracteres");
+            alert("senha incorreta");
             inputSenha.style.borderColor = "red";
             inputSenha.value = ""; // Limpa a senha se estiver errada
+        }else if(emailValor.length < 11){
+            ("login incorreto")
+            inputEmail.style.borderColor = "red";
+            inputEmail.value = "";
+
         } 
-        else {
-            alert("login realizado com sucesso! bem vindo ao instituto federal :D");
+        else if(emailValor === loginCerto && senhaValor === senhaCerta){
+            alert("login certo, bem vindo! ;)")
+            window.location.href = ("page.html")
+        }else{
+            alert("login ou senha incorretos");
+            inputSenha.style.borderColor = "red";
+            inputEmail.style.borderColor = "red";
             inputEmail.value = "";
             inputSenha.value = "";
-        }
-    });
 
+        }
+
+    });
+           
 </script>
 <!-- #endregion script-->
 
